@@ -1,6 +1,6 @@
 {
   "name": "@lyu_danny/copymark",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "copy-to-mark UX toolkit for react",
   "keywords": [
     "react",
