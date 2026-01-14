@@ -12,8 +12,25 @@
   "license": "MIT",
   "author": "lyu_danny",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsup",
+    "prepublishOnly": "npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.1.11",
+    "@types/react": "^19.2.8",
+    "jsdom": "^27.4.0",
+    "storybook": "^10.1.11",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.17"
+  },
+  "dependencies": {
+    "react": "^19.2.3"
   }
 }

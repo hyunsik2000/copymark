@@ -1,0 +1,280 @@
+/* src/styles/copymark.css */
+
+/* ========== Base ========== */
+:root {
+  --cm-radius: 10px;
+  --cm-border: rgba(0, 0, 0, 0.12);
+  --cm-bg: #fff;
+  --cm-text: rgba(0, 0, 0, 0.88);
+  --cm-muted: rgba(0, 0, 0, 0.6);
+
+  --cm-success-bg: rgba(34, 197, 94, 0.12);
+  --cm-success-text: rgba(22, 163, 74, 1);
+
+  --cm-error-bg: rgba(239, 68, 68, 0.12);
+  --cm-error-text: rgba(220, 38, 38, 1);
+
+  --cm-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ========== CopyText ========== */
+.cm-copyText {
+  cursor: pointer;
+  user-select: none;
+  color: var(--cm-text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  margin: -2px -6px;
+  border-radius: 8px;
+  transition: background-color 120ms ease, color 120ms ease, opacity 120ms ease;
+}
+.cm-copyText:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.cm-copyText:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 2px;
+}
+.cm-copyText[data-status="copying"] {
+  opacity: 0.65;
+  cursor: progress;
+  pointer-events: none;
+}
+.cm-copyText[data-status="success"] {
+  color: var(--cm-success-text);
+}
+.cm-copyText[data-status="error"] {
+  color: var(--cm-error-text);
+}
+
+/* CopyText hint (legacy) */
+.cm-hint {
+  display: none;
+}
+
+/* ========== CopyButton ========== */
+.cm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  height: 38px;
+  padding: 0 14px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.82) 100%);
+  color: var(--cm-text);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+.cm-button:hover:not(:disabled) {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+  transform: translateY(-1px);
+}
+.cm-button:active:not(:disabled) {
+  transform: translateY(0px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+}
+.cm-button:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 2px;
+}
+.cm-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========== Toast ========== */
+.cm-toaster {
+  position: fixed;
+  z-index: 9999;
+  inset: auto 16px 16px auto; /* bottom-right */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.cm-toast {
+  min-width: 280px;
+  max-width: 400px;
+
+  border-radius: 12px;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  padding: 14px 16px;
+  color: var(--cm-text);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+
+  /* Animation */
+  animation: cm-toast-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.cm-toast.cm-toast--exiting {
+  animation: cm-toast-exit 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.cm-toast__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.cm-toast__title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.cm-toast__desc {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.cm-toast__close {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  transition: opacity 0.15s ease;
+}
+
+.cm-toast__close:hover {
+  opacity: 1;
+}
+
+/* Toast Theme: Grass (default) */
+.cm-toast[data-theme="grass"] {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.cm-toast[data-theme="grass"][data-variant="success"] {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12) 0%, rgba(34, 197, 94, 0.06) 100%);
+  border-color: rgba(34, 197, 94, 0.25);
+  color: rgba(22, 163, 74, 0.95);
+}
+
+.cm-toast[data-theme="grass"][data-variant="error"] {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(239, 68, 68, 0.06) 100%);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: rgba(220, 38, 38, 0.95);
+}
+
+/* Toast Theme: Orange */
+.cm-toast[data-theme="orange"] {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+  border-color: rgba(249, 115, 22, 0.2);
+}
+
+.cm-toast[data-theme="orange"][data-variant="success"] {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(249, 115, 22, 0.06) 100%);
+  border-color: rgba(249, 115, 22, 0.25);
+  color: rgba(234, 88, 12, 0.95);
+}
+
+.cm-toast[data-theme="orange"][data-variant="error"] {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(239, 68, 68, 0.06) 100%);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: rgba(220, 38, 38, 0.95);
+}
+
+/* Toast Theme: Blue */
+.cm-toast[data-theme="blue"] {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.cm-toast[data-theme="blue"][data-variant="success"] {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.06) 100%);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: rgba(37, 99, 235, 0.95);
+}
+
+.cm-toast[data-theme="blue"][data-variant="error"] {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(239, 68, 68, 0.06) 100%);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: rgba(220, 38, 38, 0.95);
+}
+
+/* Toast Theme: Red */
+.cm-toast[data-theme="red"] {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.cm-toast[data-theme="red"][data-variant="success"] {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12) 0%, rgba(34, 197, 94, 0.06) 100%);
+  border-color: rgba(34, 197, 94, 0.25);
+  color: rgba(22, 163, 74, 0.95);
+}
+
+.cm-toast[data-theme="red"][data-variant="error"] {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(239, 68, 68, 0.06) 100%);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: rgba(220, 38, 38, 0.95);
+}
+
+/* Toast Theme: Custom (사용자 정의 가능) */
+.cm-toast[data-theme="custom"] {
+  /* 사용자가 CSS 변수로 커스터마이징 가능 */
+  background: var(--cm-toast-custom-bg, var(--cm-bg));
+  border-color: var(--cm-toast-custom-border, var(--cm-border));
+  color: var(--cm-toast-custom-text, var(--cm-text));
+}
+
+/* Animations */
+@keyframes cm-toast-enter {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes cm-toast-exit {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+}
