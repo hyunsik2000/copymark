@@ -1,0 +1,19 @@
+{
+  "name": "@lyu_danny/copymark",
+  "version": "0.0.1",
+  "description": "copy-to-mark UX toolkit for react",
+  "keywords": [
+    "react",
+    "copy",
+    "clipboard",
+    "ui",
+    "ux"
+  ],
+  "license": "MIT",
+  "author": "lyu_danny",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
