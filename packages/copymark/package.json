@@ -1,0 +1,42 @@
+{
+  "name": "@lyu_danny/copymark",
+  "version": "0.0.2",
+  "description": "copy-to-mark UX toolkit for react",
+  "keywords": [
+    "react",
+    "copy",
+    "clipboard",
+    "ui",
+    "ux"
+  ],
+  "license": "MIT",
+  "author": "lyu_danny",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "echo 'Ready to publish'"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.8",
+    "jsdom": "^27.4.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.17"
+  },
+  "dependencies": {
+    "react": "^19.2.3"
+  }
+}
