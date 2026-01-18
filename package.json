@@ -1,13 +1,11 @@
 {
   "name": "copymark-monorepo",
-  "private": true,
   "workspaces": [
     "packages/*",
     "website"
   ],
   "scripts": {
     "dev:website": "npm --workspace website run dev",
-    "build:website": "npm --workspace website run build",
-    "test": "npm --workspace @lyu_danny/copymark run test"
+    "build:website": "npm --workspace website run build"
   }
 }
