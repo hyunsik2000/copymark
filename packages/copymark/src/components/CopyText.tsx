@@ -6,6 +6,7 @@ export function CopyText({
   value,
   children,
   className,
+  unstyled,
   toast,
   duration,
   theme,
@@ -26,7 +27,7 @@ export function CopyText({
 
   return (
     <span
-      className={`cm-copyText ${className ?? ""}`}
+      className={unstyled ? className ?? "" : `cm-copyText ${className ?? ""}`}
       data-status={status}
       role="button"
       onClick={handleClick}

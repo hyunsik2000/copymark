@@ -6,6 +6,7 @@ export function CopyButton({
   value,
   children,
   className,
+  unstyled,
   toast,
   duration,
   theme,
@@ -27,7 +28,7 @@ export function CopyButton({
   return (
     <button
       type="button"
-      className={`cm-button ${className ?? ""}`}
+      className={unstyled ? className ?? "" : `cm-button ${className ?? ""}`}
       onClick={handleClick}
       disabled={status === "copying"}
       aria-label="Copy Button"

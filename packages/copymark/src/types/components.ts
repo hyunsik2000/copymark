@@ -7,6 +7,7 @@ type CopyBaseProps = {
   value: string;
   children?: ReactNode;
   className?: string;
+  unstyled?: boolean;
 } & UseCopyValueOptions;
 
 export type CopyButtonProps = CopyBaseProps;
