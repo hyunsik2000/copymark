@@ -1,68 +1,119 @@
 # Copymark
 
-copy-to-mark UX toolkit for React.
+[![npm version](https://badge.fury.io/js/%40lyu_danny%2Fcopymark.svg)](https://www.npmjs.com/package/@lyu_danny/copymark)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Install
+**Copymark** is a sophisticated, zero-config React toolkit designed to elevate your "Copy-to-Clipboard" user experience. It seamlessly integrates clipboard functionality with beautiful, non-intrusive toast notifications out of the box.
+
+---
+
+## ✨ Key Features
+
+- **🚀 Zero Configuration**: No Providers, no boilerplate. Just import and use.
+- **🎨 Multi-Themed**: Choose from curated themes or customize your own.
+- **🧩 Component-Driven**: Optimized `CopyButton` and `CopyText` for flexible UI implementation.
+- **⚡ Lightweight & Fast**: Built with performance in mind using React's latest features.
+- **📱 Responsive UI**: Beautiful toasts that work perfectly on mobile and desktop.
+
+---
+
+## 📦 Installation
 
 ```bash
-npm i @lyu_danny/copymark
+npm install @lyu_danny/copymark
+# or
+yarn add @lyu_danny/copymark
+# or
+pnpm add @lyu_danny/copymark
 ```
 
-## Usage (필수 설정)
+---
 
-- 토스트를 보려면 `CopymarkToastProvider`로 감싸고 `CopymarkToaster`를 렌더해야 합니다.
+## 🚀 Quick Start
+
+Copymark is designed to work immediately without any complex setup.
 
 ```tsx
-import {
-  CopyButton,
-  CopyText,
-  CopymarkToastProvider,
-  CopymarkToaster,
-} from "@lyu_danny/copymark";
+import { CopyButton, CopyText } from "@lyu_danny/copymark";
 
 function App() {
   return (
-    <CopymarkToastProvider>
-      <CopyButton value="Hello World">Copy</CopyButton>
-      <CopyText value="Click to copy">Click me</CopyText>
-      <CopymarkToaster />
-    </CopymarkToastProvider>
+    <div className="container">
+      {/* Basic Button */}
+      <CopyButton value="https://copymark.dev">
+        Copy Link
+      </CopyButton>
+
+      {/* Inline Text Copy */}
+      <p>
+        My IP address is <CopyText value="192.168.0.1">192.168.0.1</CopyText>
+      </p>
+    </div>
   );
 }
 ```
 
-### With Options
+---
+
+## 🛠 Advanced Usage
+
+### Customizing Toasts
+Tailor the feedback to match your application's brand.
 
 ```tsx
-// Customize toast messages and theme
-<CopyButton 
-  value="Hello World"
+<CopyButton
+  value="PromotionalCode2025"
+  toast="on"
   theme="blue"
   duration={3000}
   messages={{
-    successTitle: "성공!",
-    successDescription: "복사 완료되었습니다.",
-    errorTitle: "실패",
-    errorDescription: "다시 시도해주세요."
+    successTitle: "Code Copied!",
+    successDescription: "Use this code at checkout for 20% off.",
+    errorTitle: "Failed to Copy",
+    errorDescription: "Please try again manually."
   }}
 >
-  Copy
+  Get Deal
 </CopyButton>
+```
 
-// Disable toast
-<CopyText 
-  value="Click to copy"
-  toast={false}
->
-  Click me
+### Disabling Feedback
+Sometimes you want silence. Use the `toast` prop to opt out.
+
+```tsx
+<CopyText value="Silent data" toast="off">
+  Copy without toast
 </CopyText>
 ```
 
-## Props (CopyButton / CopyText)
+---
 
-- `value` (string, required): 복사할 문자열
-- `toast` (boolean, default `true`): 토스트 표시 여부
-- `duration` (number, default `2000`): 토스트 표시 시간(ms)
-- `theme` (`"grass" | "orange" | "blue" | "red" | "custom"`): 토스트 테마
-- `messages` (object): 토스트 문구 커스터마이즈
-  - `successTitle`, `successDescription`, `errorTitle`, `errorDescription`
+## 📋 API Reference
+
+### `CopyButton` / `CopyText` Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `value` | `string` | **Required** | The string to be copied to the clipboard. |
+| `toast` | `"on" \| "off"` | `"on"` | Enables or disables the toast notification feedback. |
+| `theme` | `ToastTheme` | `"grass"` | Visual preset: `"grass"`, `"orange"`, `"blue"`, `"red"`, `"dark"`. |
+| `duration`| `number` | `2000` | Duration (ms) the toast stays visible. |
+| `messages`| `Object` | (Default) | Custom text for success/error titles and descriptions. |
+| `unstyled`| `boolean` | `false` | Removes default library styling for complete CSS control. |
+
+---
+
+## 🎨 Themes
+
+Currently, Copymark supports following built-in themes:
+- `grass`: Nature-inspired green (Success standard)
+- `orange`: Vibrant warning/action orange
+- `blue`: Clean, professional informative blue
+- `red`: Error/Alert standard red
+- `dark`: Modern, sleek dark mode with glassmorphism
+
+---
+
+## 📄 License
+
+MIT © [lyu_danny](https://github.com/lyu_danny)
