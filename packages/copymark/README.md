@@ -1,68 +1,46 @@
-# Copymark
+# @lyu_danny/copymark
 
-copy-to-mark UX toolkit for React.
+> A sophisticated, zero-config React toolkit for "Copy-to-Clipboard" with integrated Toasts.
 
 ## Install
 
 ```bash
-npm i @lyu_danny/copymark
+npm install @lyu_danny/copymark
 ```
 
-## Usage (필수 설정)
+## Features
 
-- 토스트를 보려면 `CopymarkToastProvider`로 감싸고 `CopymarkToaster`를 렌더해야 합니다.
+- **No Provider needed**: Just import and use. Infrastructure is initialized lazily.
+- **Auto-Injection**: Toaster is automatically managed within the DOM.
+- **Full Customizability**: Override messages, durations, and themes per component.
+
+## Usage
 
 ```tsx
-import {
-  CopyButton,
-  CopyText,
-  CopymarkToastProvider,
-  CopymarkToaster,
-} from "@lyu_danny/copymark";
+import { CopyButton, CopyText } from "@lyu_danny/copymark";
 
-function App() {
+function Example() {
   return (
-    <CopymarkToastProvider>
-      <CopyButton value="Hello World">Copy</CopyButton>
-      <CopyText value="Click to copy">Click me</CopyText>
-      <CopymarkToaster />
-    </CopymarkToastProvider>
+    <>
+      {/* Smart injection of Toast UI happens on the first click */}
+      <CopyButton value="Shareable Text">Copy to Clipboard</CopyButton>
+
+      {/* Opt-out of feedback if necessary */}
+      <CopyText value="Secret" toast="off">Click to copy silently</CopyText>
+    </>
   );
 }
 ```
 
-### With Options
+## API
 
-```tsx
-// Customize toast messages and theme
-<CopyButton 
-  value="Hello World"
-  theme="blue"
-  duration={3000}
-  messages={{
-    successTitle: "성공!",
-    successDescription: "복사 완료되었습니다.",
-    errorTitle: "실패",
-    errorDescription: "다시 시도해주세요."
-  }}
->
-  Copy
-</CopyButton>
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `value` | `string` | - | Text to copy |
+| `toast` | `"on" \| "off"` | `"on"` | Toggle toast feedback |
+| `theme` | `ToastTheme` | `"grass"` | Visual preset: `grass`, `orange`, `blue`, `red`, `dark` |
 
-// Disable toast
-<CopyText 
-  value="Click to copy"
-  toast={false}
->
-  Click me
-</CopyText>
-```
+| `duration` | `number` | `2000` | Visibility time in ms |
 
-## Props (CopyButton / CopyText)
-
-- `value` (string, required): 복사할 문자열
-- `toast` (boolean, default `true`): 토스트 표시 여부
-- `duration` (number, default `2000`): 토스트 표시 시간(ms)
-- `theme` (`"grass" | "orange" | "blue" | "red" | "custom"`): 토스트 테마
-- `messages` (object): 토스트 문구 커스터마이즈
-  - `successTitle`, `successDescription`, `errorTitle`, `errorDescription`
+---
+MIT Licensed | © 2025 lyu_danny

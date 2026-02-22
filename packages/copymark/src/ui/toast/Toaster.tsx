@@ -1,18 +1,18 @@
-// Toaster component
-
 import React from "react";
-import { useToastContext } from "./ToastProvider";
+import { useToastItems, toastStore } from "./store";
 import { ToastItem } from "./ToastItem";
 
 export function Toaster() {
-  const toast = useToastContext();
-  if (!toast) return null;
+  const items = useToastItems();
+
+  if (items.length === 0) return null;
 
   return (
-    <div className="cm-toaster" aria-live="polite" aria-relevant="additions">
-      {toast.items.map((item) => (
-        <ToastItem key={item.id} item={item} onRemove={toast.remove} />
+    <div className="cm-toaster" aria-live="polite">
+      {items.map((item) => (
+        <ToastItem key={item.id} item={item} onRemove={(id) => toastStore.remove(id)} />
       ))}
     </div>
   );
 }
+

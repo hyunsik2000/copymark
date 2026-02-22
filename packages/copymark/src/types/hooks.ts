@@ -19,13 +19,15 @@ export type CopyToastMessages = {
 
 export type UseCopyValueOptions = {
   /**
-   * 토스트를 띄울지 여부 (provider가 없으면 어차피 무시됨)
-   * @default true
+   * 토스트 표시 설정
+   * - "on": 토스트 활성화 (Provider가 없으면 자동으로 생성)
+   * - "off": 토스트 비활성화
+   * @default "on"
    */
-  toast?: boolean;
+  toast?: "on" | "off";
   /**
    * 토스트 테마
-   * @default undefined (ToastProvider의 defaultTheme 사용)
+   * @default "grass"
    */
   theme?: ToastTheme;
   /**
@@ -38,3 +40,6 @@ export type UseCopyValueOptions = {
    */
   messages?: CopyToastMessages;
 };
+
+
+

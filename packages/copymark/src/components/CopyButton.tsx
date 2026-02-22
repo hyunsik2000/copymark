@@ -7,17 +7,19 @@ export function CopyButton({
   children,
   className,
   unstyled,
-  toast,
   duration,
   theme,
   messages,
+  toast,
 }: CopyButtonProps) {
   const { handleCopy, status } = useCopyValue({
-    toast,
     duration,
     theme,
     messages,
+    toast,
   });
+
+
 
   const handleClick = () => {
     // 중복 클릭 방지: copying 중이면 무시

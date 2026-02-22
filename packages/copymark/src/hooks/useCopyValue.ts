@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useCopymark } from "./useCopymark";
-import { useCopymarkToast } from "../ui/toast";
+import { copymarkToast } from "../ui/toast/autoToast";
 import type { UseCopyValueOptions } from "../types/hooks";
 
 const DEFAULT_MESSAGES = {
@@ -12,33 +12,36 @@ const DEFAULT_MESSAGES = {
 
 export function useCopyValue(options: UseCopyValueOptions = {}) {
   const {
-    toast: enableToast = true,
     duration = 2000,
     theme,
     messages,
+    toast = "on",
   } = options;
 
-  const toast = useCopymarkToast();
   const mergedMessages = { ...DEFAULT_MESSAGES, ...(messages ?? {}) };
 
   const { copy, status, lastResult, reset } = useCopymark({
     onResult: (r) => {
-      if (!enableToast) return;
-      if (!toast) return;
-      if (r.ok)
-        toast.success(
+      // toast 설정이 "off"면 중단
+      if (toast === "off") return;
+
+
+
+      if (r.ok) {
+        copymarkToast.success(
           mergedMessages.successTitle,
           mergedMessages.successDescription,
           duration,
           theme
         );
-      else
-        toast.error(
+      } else {
+        copymarkToast.error(
           mergedMessages.errorTitle,
           mergedMessages.errorDescription,
           duration,
           theme
         );
+      }
     },
   });
 
@@ -51,3 +54,4 @@ export function useCopyValue(options: UseCopyValueOptions = {}) {
 
   return { handleCopy, status, lastResult, reset } as const;
 }
+

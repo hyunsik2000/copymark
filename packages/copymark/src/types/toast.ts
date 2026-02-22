@@ -1,6 +1,7 @@
 // Types for toast functionality
 
-export type ToastTheme = "grass" | "orange" | "blue" | "red" | "custom";
+export type ToastTheme = "grass" | "orange" | "blue" | "red" | "dark" | "custom" | (string & {});
+
 
 export type ToastVariant = "success" | "error";
 
