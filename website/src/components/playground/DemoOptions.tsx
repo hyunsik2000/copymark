@@ -31,9 +31,7 @@ export function DemoOptions({ state, setState }: DemoOptionsProps) {
           <select
             className="rounded-lg border border-black/10 px-3 py-2"
             value={state.theme}
-            onChange={(e) =>
-              setState({ ...state, theme: e.target.value as ToastTheme })
-            }
+            onChange={(e) => setState({ ...state, theme: e.target.value as ToastTheme })}
           >
             <option value="grass">grass</option>
             <option value="blue">blue</option>
@@ -122,9 +120,7 @@ export function DemoOptions({ state, setState }: DemoOptionsProps) {
             type="checkbox"
             className="h-4 w-4"
             checked={state.toastEnabled}
-            onChange={(e) =>
-              setState({ ...state, toastEnabled: e.target.checked })
-            }
+            onChange={(e) => setState({ ...state, toastEnabled: e.target.checked })}
           />
           Toast enabled
         </label>
