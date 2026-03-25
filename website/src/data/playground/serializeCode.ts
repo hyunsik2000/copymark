@@ -1,53 +1,41 @@
 import type { DemoOptions } from "../../types/playground/options";
 
 export function serializeButtonCode(state: DemoOptions) {
-  return `import {
-  CopyButton,
-  CopymarkToastProvider,
-  CopymarkToaster
-} from "@lyu_danny/copymark";
+  const toastProp = state.toastEnabled ? `\n  toast` : `\n  toast="off"`;
+  return `import { CopyButton } from "@lyu_danny/copymark";
+import "@lyu_danny/copymark/styles.css";
 
-<CopymarkToastProvider>
-  <CopymarkToaster />
-  <CopyButton 
-  value="${state.value}"
-  toast={${state.toastEnabled}}
+<CopyButton
+  value="${state.value}"${toastProp}
   theme="${state.theme}"
   duration={${state.duration}}
   messages={{
     successTitle: "${state.messages.successTitle}",
     successDescription: "${state.messages.successDescription}",
     errorTitle: "${state.messages.errorTitle}",
-    errorDescription: "${state.messages.errorDescription}"
+    errorDescription: "${state.messages.errorDescription}",
   }}
 >
   ${state.label}
-</CopyButton>
-</CopymarkToastProvider>`;
+</CopyButton>`;
 }
 
 export function serializeTextCode(state: DemoOptions) {
-  return `import {
-  CopyText,
-  CopymarkToastProvider,
-  CopymarkToaster
-} from "@lyu_danny/copymark";
+  const toastProp = state.toastEnabled ? `\n  toast` : `\n  toast="off"`;
+  return `import { CopyText } from "@lyu_danny/copymark";
+import "@lyu_danny/copymark/styles.css";
 
-<CopymarkToastProvider>
-  <CopymarkToaster />
-  <CopyText 
-  value="${state.value}"
-  toast={${state.toastEnabled}}
+<CopyText
+  value="${state.value}"${toastProp}
   theme="${state.theme}"
   duration={${state.duration}}
   messages={{
     successTitle: "${state.messages.successTitle}",
     successDescription: "${state.messages.successDescription}",
     errorTitle: "${state.messages.errorTitle}",
-    errorDescription: "${state.messages.errorDescription}"
+    errorDescription: "${state.messages.errorDescription}",
   }}
 >
   ${state.label}
-</CopyText>
-</CopymarkToastProvider>`;
+</CopyText>`;
 }

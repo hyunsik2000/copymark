@@ -37,6 +37,7 @@ export function DemoOptions({ state, setState }: DemoOptionsProps) {
             <option value="blue">blue</option>
             <option value="orange">orange</option>
             <option value="red">red</option>
+            <option value="dark">dark</option>
             <option value="custom">custom</option>
           </select>
         </label>
