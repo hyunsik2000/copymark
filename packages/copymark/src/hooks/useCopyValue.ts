@@ -15,15 +15,16 @@ export function useCopyValue(options: UseCopyValueOptions = {}) {
     duration = 2000,
     theme,
     messages,
-    toast = "on",
+    toast = true,
   } = options;
 
   const mergedMessages = { ...DEFAULT_MESSAGES, ...(messages ?? {}) };
 
+  const toastDisabled = toast === false || toast === "off";
+
   const { copy, status, lastResult, reset } = useCopymark({
     onResult: (r) => {
-      // toast 설정이 "off"면 중단
-      if (toast === "off") return;
+      if (toastDisabled) return;
 
 
 
