@@ -6,6 +6,10 @@
   ],
   "scripts": {
     "dev:website": "npm --workspace website run dev",
-    "build:website": "npm --workspace website run build"
+    "build:website": "npm --workspace website run build",
+    "lint:website": "npm --workspace website run lint",
+    "format:website": "npm --workspace website run format",
+    "format:check:website": "npm --workspace website run format:check",
+    "qa": "npm run lint:website && npm run format:check:website"
   }
 }

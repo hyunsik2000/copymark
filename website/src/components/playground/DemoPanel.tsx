@@ -12,14 +12,7 @@ type DemoPanelProps = {
   preview: ReactNode;
 };
 
-export function DemoPanel({
-  title,
-  fileName,
-  state,
-  setState,
-  code,
-  preview,
-}: DemoPanelProps) {
+export function DemoPanel({ title, fileName, state, setState, code, preview }: DemoPanelProps) {
   return (
     <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
       <h2 className="text-xl font-semibold text-slate-900">{title}</h2>
