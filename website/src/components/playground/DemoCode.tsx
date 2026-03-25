@@ -7,7 +7,7 @@ type DemoCodeProps = {
   fileName: string;
 };
 
-export function DemoCode({ code }: DemoCodeProps) {
+export function DemoCode({ code, fileName }: DemoCodeProps) {
   const highlighted = useMemo(() => highlightCode(code), [code]);
 
   return (
@@ -17,6 +17,7 @@ export function DemoCode({ code }: DemoCodeProps) {
           <span className="h-3 w-3 rounded-full bg-red-500/80" />
           <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
           <span className="h-3 w-3 rounded-full bg-green-500/80" />
+          <span className="ml-2 text-xs text-slate-400">{fileName}</span>
         </div>
         <CopyButton
           value={code}
